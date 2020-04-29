@@ -1,0 +1,21 @@
+select error as error, register_id as id_path
+from uf_actualizar_ruta(
+    cast($(id) as integer),
+    $(name),
+    $(description),
+    $(skills),
+    $(tags),
+    $(criterion),
+    cast($(materiality) as materiality),
+    cast($(difficulty) as difficulty),
+    $(image_url),
+    cast($(expire_at) as date),
+    cast($(score) as integer),
+    $(language),
+    cast($(parent) as integer[]),
+    cast($(element) as integer[]),
+    cast($(x) as numeric[]),
+    cast($(y) as numeric[]),
+    cast($(width) as numeric[]),
+    cast($(high) as numeric[]),
+    cast($(usuario) as integer))

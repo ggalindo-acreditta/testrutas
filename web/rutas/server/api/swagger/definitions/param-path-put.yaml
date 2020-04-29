@@ -1,0 +1,85 @@
+description: Path data
+type: object
+properties:
+  id:
+    type: integer
+    description: Path Id (integer)
+  name:
+    type: string
+    minLength: 5
+    description: Nombre 
+  description:
+    type: string
+    description: Descripcion 
+  skills:
+    type: string
+    description: Habilidades 
+  tags:
+    type: string
+    description: Etiquetas 
+  criterion:
+    type: string
+    description: Criterios 
+  materiality:
+    type: string
+    enum:
+      - KNOWLEDGE
+      - SKILL
+      - EXCELLENCE
+      - CERTIFICATION
+      - EXPERTISE
+      - MEMBERSHIP
+      - PARTICIPATION
+    description: Materialidad 
+  difficulty:
+    type: string
+    enum:
+      - EASY
+      - MEDIUM
+      - HARD
+    description: Dificultad 
+  image_url:
+    type: string
+    description: URL de la imagen 
+  expire_at:
+    type: string
+    description: Fecha de Expiracion
+  score:
+    type: integer
+    description: Puntuacion
+  language:
+    type: string
+    description: Idioma
+  tree:
+    description: Element Tree
+    type: array
+    items:
+      type: object
+      properties:
+        parent:
+          type: integer
+          description: Parent id en formato Entero
+        element:
+          type: integer
+          description: Element id en formato Entero
+        x:
+          type: number
+          description: Posicion eje X
+        y:
+          type: number
+          description: Posicion eje Y
+        width:
+          type: number
+          description: Ancho
+        high:
+          type: number
+          description: Alto
+      required:
+        - element
+required:
+  - id
+  - name
+  - materiality
+  - difficulty
+  - score
+  - language

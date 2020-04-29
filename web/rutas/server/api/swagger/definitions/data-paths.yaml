@@ -1,0 +1,4 @@
+description: Paths List
+type: array 
+items:
+  $ref: '#/definitions/dataPath'  

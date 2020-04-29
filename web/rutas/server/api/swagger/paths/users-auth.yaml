@@ -1,0 +1,23 @@
+post:
+  tags:
+    - User
+  summary: Authenticate an user
+  description: 'Authenticate an user and return a token'
+  operationId: users_authenticate
+  produces:
+    - application/json
+  parameters:
+    - $ref : "#/parameters/auth_data"
+  responses:
+    '200':
+      description: successful operation
+      schema:
+        $ref: '#/definitions/AuthResponse'
+    '400':
+      "$ref": "#/responses/Standard400ErrorResponse"
+    '403':
+      "$ref": "#/responses/Standard403ErrorResponse"
+    '404':
+      "$ref": "#/responses/Standard404ErrorResponse"
+    '500':
+      "$ref": "#/responses/Standard500ErrorResponse"

@@ -1,0 +1,1862 @@
+swagger: '2.0'
+info:
+  title: HIS API
+  version: '1.0'
+  x-logo:
+    url: logo.png
+  description: >
+    API for AutoRegistro.
+
+    # Introduction
+
+    This API is documented in **OpenAPI format V2** called
+    [swagger](http://swagger.io).
+
+    # Authentication
+
+    AutoRegistro offers two forms of authentication:
+      - **API Key:** For authenticated clients (registered app's) and users, based on JWT.
+      - **Basic:** For authentication of users.
+    <!-- ReDoc-Inject: <security-definitions> -->
+schemes:
+  - http
+  - https
+produces:
+  - application/json
+consumes:
+  - application/json
+host: 'localhost:3000'
+basePath: /api/v1
+securityDefinitions:
+  JWT:
+    type: apiKey
+    description: JWT security schema
+    name: Authorization
+    in: header
+  ClientSecurity:
+    type: apiKey
+    description: JWT security for clients (registered apps)
+    name: clientkey
+    in: header
+security:
+  - ClientSecurity: []
+paths:
+  /auth/user/authenticate:
+    post:
+      tags:
+        - User
+      summary: Authenticate an user
+      description: Authenticate an user and return a token
+      operationId: users_authenticate
+      produces:
+        - application/json
+      parameters:
+        - $ref: '#/parameters/auth_data'
+      responses:
+        '200':
+          description: successful operation
+          schema:
+            $ref: '#/definitions/AuthResponse'
+        '400':
+          $ref: '#/responses/Standard400ErrorResponse'
+        '403':
+          $ref: '#/responses/Standard403ErrorResponse'
+        '404':
+          $ref: '#/responses/Standard404ErrorResponse'
+        '500':
+          $ref: '#/responses/Standard500ErrorResponse'
+  /account/register:
+    post:
+      tags:
+        - User
+      summary: Register New User
+      description: Register New User
+      operationId: users_registerData
+      produces:
+        - application/json
+      parameters:
+        - $ref: '#/parameters/user_register_data'
+      responses:
+        '200':
+          description: successful operation
+          schema:
+            $ref: '#/definitions/UserRegisterResponse'
+        '400':
+          $ref: '#/responses/Standard400ErrorResponse'
+  /account/confirm:
+    post:
+      tags:
+        - User
+      summary: Register New User
+      description: Register New User
+      operationId: users_confirmData
+      parameters:
+        - in: query
+          name: param1
+          type: string
+          description: Registration_code o token asociado al registro del usuario
+      produces:
+        - application/json
+      responses:
+        '200':
+          description: successful operation
+          schema:
+            $ref: '#/definitions/UserRegisterResponse'
+        '400':
+          $ref: '#/responses/Standard400ErrorResponse'
+  /organization/connect:
+    post:
+      tags:
+        - User
+      summary: Organization Connect
+      description: Organization Connect
+      operationId: users_organizationConnect
+      produces:
+        - application/json
+      parameters:
+        - $ref: '#/parameters/user_connect_data'
+      responses:
+        '200':
+          description: successful operation
+          schema:
+            $ref: '#/definitions/UserConnectResponse'
+        '400':
+          $ref: '#/responses/Standard400ErrorResponse'
+  /organization/disconnect:
+    post:
+      tags:
+        - User
+      summary: Organization Disconnect
+      description: Organization Disconnect
+      operationId: users_organizationDisconnect
+      produces:
+        - application/json
+      responses:
+        '200':
+          description: successful operation
+          schema:
+            $ref: '#/definitions/dataDefaultResponse'
+        '400':
+          $ref: '#/responses/Standard400ErrorResponse'
+        '403':
+          $ref: '#/responses/Standard403ErrorResponse'
+        '404':
+          $ref: '#/responses/Standard404ErrorResponse'
+        '500':
+          $ref: '#/responses/Standard500ErrorResponse'
+  /organization/acclaim:
+    post:
+      tags:
+        - User
+      summary: Organization Connect
+      description: Organization Connect
+      operationId: users_organizationAcclaim
+      produces:
+        - application/json
+      parameters:
+        - $ref: '#/parameters/user_acclaim_data'
+      responses:
+        '200':
+          description: successful operation
+          schema:
+            $ref: '#/definitions/UserAcclaimResponse'
+        '400':
+          $ref: '#/responses/Standard400ErrorResponse'
+  /organization/badge:
+    get:
+      tags:
+        - User
+      summary: Organization Badge
+      description: Organization Badge
+      operationId: users_organizationBadge
+      produces:
+        - application/json
+      responses:
+        '200':
+          description: successful operation
+          schema:
+            $ref: '#/definitions/UserBadgeResponse'
+        '400':
+          $ref: '#/responses/Standard400ErrorResponse'
+  /organization/account/invite:
+    post:
+      tags:
+        - User
+      summary: Invitar Colaboradores
+      description: Invitar Colaboradores
+      security:
+        - JWT: []
+      operationId: users_organizationInvite
+      produces:
+        - application/json
+      parameters:
+        - $ref: '#/parameters/paramInvitePost'
+      responses:
+        '200':
+          description: successful operation
+          schema:
+            $ref: '#/definitions/dataDefaultResponse'
+        '400':
+          $ref: '#/responses/Standard400ErrorResponse'
+        '403':
+          $ref: '#/responses/Standard403ErrorResponse'
+        '404':
+          $ref: '#/responses/Standard404ErrorResponse'
+        '500':
+          $ref: '#/responses/Standard500ErrorResponse'
+  '/organization/account/invite/{code}':
+    get:
+      tags:
+        - User
+      summary: Get User Data
+      description: Get User Data
+      security:
+        - JWT: []
+      operationId: users_getInviteData
+      parameters:
+        - name: code
+          in: path
+          description: Registration Code
+          required: true
+          type: string
+      produces:
+        - application/json
+      responses:
+        '200':
+          description: successful operation
+          schema:
+            $ref: '#/definitions/dataUser'
+        '400':
+          $ref: '#/responses/Standard400ErrorResponse'
+        '403':
+          $ref: '#/responses/Standard403ErrorResponse'
+        '404':
+          $ref: '#/responses/Standard404ErrorResponse'
+        '500':
+          $ref: '#/responses/Standard500ErrorResponse'
+  /organization/account/confirm:
+    post:
+      tags:
+        - User
+      summary: Register New User
+      description: Register New User
+      security:
+        - JWT: []
+      operationId: users_organizationConfirm
+      produces:
+        - application/json
+      parameters:
+        - $ref: '#/parameters/paramConfirmPost'
+      responses:
+        '200':
+          description: successful operation
+          schema:
+            $ref: '#/definitions/UserRegisterResponse'
+        '400':
+          $ref: '#/responses/Standard400ErrorResponse'
+  /organization/elements:
+    get:
+      tags:
+        - Elements
+      summary: Elements List
+      description: Elements List
+      security:
+        - JWT: []
+      operationId: elements_list
+      parameters:
+        - in: query
+          name: offset
+          type: integer
+          description: >-
+            The number of items to skip before starting to collect the result
+            set.
+        - in: query
+          name: limit
+          type: integer
+          description: The numbers of items to return.
+        - in: query
+          name: sort
+          type: string
+          description: Campo por el cual desea ordenar el resultado.
+        - in: query
+          name: filter
+          type: string
+          description: Filtros adicionales
+      produces:
+        - application/json
+      responses:
+        '200':
+          description: successful operation
+          schema:
+            $ref: '#/definitions/dataElements'
+        '400':
+          $ref: '#/responses/Standard400ErrorResponse'
+        '403':
+          $ref: '#/responses/Standard403ErrorResponse'
+        '404':
+          $ref: '#/responses/Standard404ErrorResponse'
+        '500':
+          $ref: '#/responses/Standard500ErrorResponse'
+  '/organization/elements/{id}':
+    get:
+      tags:
+        - Elements
+      summary: Get Element
+      description: Get Element
+      security:
+        - JWT: []
+      operationId: elements_get
+      parameters:
+        - name: id
+          in: path
+          description: Element Id
+          required: true
+          type: integer
+      produces:
+        - application/json
+      responses:
+        '200':
+          description: successful operation
+          schema:
+            $ref: '#/definitions/dataElement'
+        '400':
+          $ref: '#/responses/Standard400ErrorResponse'
+        '403':
+          $ref: '#/responses/Standard403ErrorResponse'
+        '404':
+          $ref: '#/responses/Standard404ErrorResponse'
+        '500':
+          $ref: '#/responses/Standard500ErrorResponse'
+  '/user/{id}':
+    get:
+      tags:
+        - User
+      summary: Get User Data
+      description: Get User Data
+      security:
+        - JWT: []
+      operationId: users_getData
+      parameters:
+        - name: id
+          in: path
+          description: User Id
+          required: true
+          type: integer
+      produces:
+        - application/json
+      responses:
+        '200':
+          description: successful operation
+          schema:
+            $ref: '#/definitions/dataUser'
+        '400':
+          $ref: '#/responses/Standard400ErrorResponse'
+        '403':
+          $ref: '#/responses/Standard403ErrorResponse'
+        '404':
+          $ref: '#/responses/Standard404ErrorResponse'
+        '500':
+          $ref: '#/responses/Standard500ErrorResponse'
+  /user/logout:
+    get:
+      tags:
+        - User
+      summary: User Logout
+      description: User Logout
+      security:
+        - ClientSecurity: []
+      x-security-scopes:
+        - admin
+        - junta
+        - coord
+        - profam
+        - profes
+      operationId: users_logout
+      produces:
+        - application/json
+      responses:
+        '200':
+          description: successful operation
+          schema:
+            $ref: '#/definitions/successResponse'
+        '400':
+          $ref: '#/responses/Standard400ErrorResponse'
+        '500':
+          $ref: '#/responses/Standard500ErrorResponse'
+  /difficulty:
+    get:
+      tags:
+        - Combo
+      summary: Difficulty List
+      description: Difficulty List
+      security:
+        - JWT: []
+      operationId: combo_getDifficulty
+      produces:
+        - application/json
+      responses:
+        '200':
+          description: successful operation
+          schema:
+            $ref: '#/definitions/dataComboString'
+        '400':
+          $ref: '#/responses/Standard400ErrorResponse'
+        '403':
+          $ref: '#/responses/Standard403ErrorResponse'
+        '404':
+          $ref: '#/responses/Standard404ErrorResponse'
+        '500':
+          $ref: '#/responses/Standard500ErrorResponse'
+  /materiality:
+    get:
+      tags:
+        - Combo
+      summary: Materiality List
+      description: Materiality List
+      security:
+        - JWT: []
+      operationId: combo_getMateriality
+      produces:
+        - application/json
+      responses:
+        '200':
+          description: successful operation
+          schema:
+            $ref: '#/definitions/dataComboString'
+        '400':
+          $ref: '#/responses/Standard400ErrorResponse'
+        '403':
+          $ref: '#/responses/Standard403ErrorResponse'
+        '404':
+          $ref: '#/responses/Standard404ErrorResponse'
+        '500':
+          $ref: '#/responses/Standard500ErrorResponse'
+  /elements:
+    get:
+      tags:
+        - Elements
+      summary: Elements List
+      description: Elements List
+      security:
+        - JWT: []
+      operationId: elements_list
+      parameters:
+        - in: query
+          name: offset
+          type: integer
+          description: >-
+            The number of items to skip before starting to collect the result
+            set.
+        - in: query
+          name: limit
+          type: integer
+          description: The numbers of items to return.
+        - in: query
+          name: sort
+          type: string
+          description: Campo por el cual desea ordenar el resultado.
+        - in: query
+          name: filter
+          type: string
+          description: Filtros adicionales
+      produces:
+        - application/json
+      responses:
+        '200':
+          description: successful operation
+          schema:
+            $ref: '#/definitions/dataElements'
+        '400':
+          $ref: '#/responses/Standard400ErrorResponse'
+        '403':
+          $ref: '#/responses/Standard403ErrorResponse'
+        '404':
+          $ref: '#/responses/Standard404ErrorResponse'
+        '500':
+          $ref: '#/responses/Standard500ErrorResponse'
+    post:
+      tags:
+        - Elements
+      summary: Elements Register
+      description: Elements Register
+      security:
+        - JWT: []
+      operationId: elements_add
+      produces:
+        - application/json
+      parameters:
+        - $ref: '#/parameters/paramElementPost'
+      responses:
+        '200':
+          description: successful operation
+          schema:
+            $ref: '#/definitions/dataDefaultResponse'
+        '400':
+          $ref: '#/responses/Standard400ErrorResponse'
+        '403':
+          $ref: '#/responses/Standard403ErrorResponse'
+        '404':
+          $ref: '#/responses/Standard404ErrorResponse'
+        '500':
+          $ref: '#/responses/Standard500ErrorResponse'
+    put:
+      tags:
+        - Elements
+      summary: Elements Update
+      description: Elements Update
+      security:
+        - JWT: []
+      operationId: elements_update
+      produces:
+        - application/json
+      parameters:
+        - $ref: '#/parameters/paramElementPut'
+      responses:
+        '200':
+          description: successful operation
+          schema:
+            $ref: '#/definitions/dataDefaultResponse'
+        '400':
+          $ref: '#/responses/Standard400ErrorResponse'
+        '403':
+          $ref: '#/responses/Standard403ErrorResponse'
+        '404':
+          $ref: '#/responses/Standard404ErrorResponse'
+        '500':
+          $ref: '#/responses/Standard500ErrorResponse'
+  '/elements/{id}':
+    get:
+      tags:
+        - Elements
+      summary: Get Element
+      description: Get Element
+      security:
+        - JWT: []
+      operationId: elements_get
+      parameters:
+        - name: id
+          in: path
+          description: Element Id
+          required: true
+          type: integer
+      produces:
+        - application/json
+      responses:
+        '200':
+          description: successful operation
+          schema:
+            $ref: '#/definitions/dataElement'
+        '400':
+          $ref: '#/responses/Standard400ErrorResponse'
+        '403':
+          $ref: '#/responses/Standard403ErrorResponse'
+        '404':
+          $ref: '#/responses/Standard404ErrorResponse'
+        '500':
+          $ref: '#/responses/Standard500ErrorResponse'
+    delete:
+      tags:
+        - Elements
+      summary: Elements Delete
+      description: Elements Delete
+      security:
+        - JWT: []
+      operationId: elements_delete
+      produces:
+        - application/json
+      parameters:
+        - name: id
+          in: path
+          description: Element Id
+          required: true
+          type: integer
+      responses:
+        '200':
+          description: successful operation
+          schema:
+            $ref: '#/definitions/dataDefaultResponse'
+        '400':
+          $ref: '#/responses/Standard400ErrorResponse'
+        '403':
+          $ref: '#/responses/Standard403ErrorResponse'
+        '404':
+          $ref: '#/responses/Standard404ErrorResponse'
+        '500':
+          $ref: '#/responses/Standard500ErrorResponse'
+  '/elements/{id}/image':
+    post:
+      tags:
+        - Elements
+      summary: Element Image
+      description: Element Image
+      security:
+        - JWT: []
+      operationId: elements_postImage
+      consumes:
+        - multipart/form-data
+      parameters:
+        - name: id
+          in: path
+          description: Element id
+          required: true
+          type: integer
+        - in: formData
+          name: archivo
+          type: file
+          description: The file to upload.
+      produces:
+        - application/json
+      responses:
+        '200':
+          description: successful operation
+          schema:
+            $ref: '#/definitions/successCreated'
+        '400':
+          $ref: '#/responses/Standard400ErrorResponse'
+    get:
+      tags:
+        - Elements
+      summary: Download Element Image
+      description: Download Element Image
+      security:
+        - JWT: []
+      operationId: elements_getImage
+      parameters:
+        - name: id
+          in: path
+          description: Element id
+          required: true
+          type: integer
+      produces:
+        - image/png
+      responses:
+        '200':
+          description: successful operation
+          schema:
+            type: file
+        '400':
+          $ref: '#/responses/Standard400ErrorResponse'
+    delete:
+      tags:
+        - Elements
+      summary: Delete Element Image
+      description: Delete Element Image
+      security:
+        - JWT: []
+      operationId: elements_deleteImage
+      parameters:
+        - name: id
+          in: path
+          description: Element id
+          required: true
+          type: integer
+      produces:
+        - application/json
+      responses:
+        '200':
+          description: successful operation
+          schema:
+            $ref: '#/definitions/successCreated'
+        '400':
+          $ref: '#/responses/Standard400ErrorResponse'
+  /paths:
+    get:
+      tags:
+        - Paths
+      summary: Paths List
+      description: Paths List
+      security:
+        - JWT: []
+      operationId: paths_list
+      parameters:
+        - in: query
+          name: offset
+          type: integer
+          description: >-
+            The number of items to skip before starting to collect the result
+            set.
+        - in: query
+          name: limit
+          type: integer
+          description: The numbers of items to return.
+        - in: query
+          name: sort
+          type: string
+          description: Campo por el cual desea ordenar el resultado.
+        - in: query
+          name: filter
+          type: string
+          description: Filtros adicionales
+      produces:
+        - application/json
+      responses:
+        '200':
+          description: successful operation
+          schema:
+            $ref: '#/definitions/dataPaths'
+        '400':
+          $ref: '#/responses/Standard400ErrorResponse'
+        '403':
+          $ref: '#/responses/Standard403ErrorResponse'
+        '404':
+          $ref: '#/responses/Standard404ErrorResponse'
+        '500':
+          $ref: '#/responses/Standard500ErrorResponse'
+    post:
+      tags:
+        - Paths
+      summary: Paths Register
+      description: Paths Register
+      security:
+        - JWT: []
+      operationId: paths_add
+      produces:
+        - application/json
+      parameters:
+        - $ref: '#/parameters/paramPathPost'
+      responses:
+        '200':
+          description: successful operation
+          schema:
+            $ref: '#/definitions/dataDefaultResponse'
+        '400':
+          $ref: '#/responses/Standard400ErrorResponse'
+        '403':
+          $ref: '#/responses/Standard403ErrorResponse'
+        '404':
+          $ref: '#/responses/Standard404ErrorResponse'
+        '500':
+          $ref: '#/responses/Standard500ErrorResponse'
+    put:
+      tags:
+        - Paths
+      summary: Paths Update
+      description: Paths Update
+      security:
+        - JWT: []
+      operationId: paths_update
+      produces:
+        - application/json
+      parameters:
+        - $ref: '#/parameters/paramPathPut'
+      responses:
+        '200':
+          description: successful operation
+          schema:
+            $ref: '#/definitions/dataDefaultResponse'
+        '400':
+          $ref: '#/responses/Standard400ErrorResponse'
+        '403':
+          $ref: '#/responses/Standard403ErrorResponse'
+        '404':
+          $ref: '#/responses/Standard404ErrorResponse'
+        '500':
+          $ref: '#/responses/Standard500ErrorResponse'
+  '/paths/{id}':
+    get:
+      tags:
+        - Paths
+      summary: Get Path
+      description: Get Path
+      security:
+        - JWT: []
+      operationId: paths_get
+      parameters:
+        - name: id
+          in: path
+          description: Path Id
+          required: true
+          type: integer
+      produces:
+        - application/json
+      responses:
+        '200':
+          description: successful operation
+          schema:
+            $ref: '#/definitions/dataPath'
+        '400':
+          $ref: '#/responses/Standard400ErrorResponse'
+        '403':
+          $ref: '#/responses/Standard403ErrorResponse'
+        '404':
+          $ref: '#/responses/Standard404ErrorResponse'
+        '500':
+          $ref: '#/responses/Standard500ErrorResponse'
+    delete:
+      tags:
+        - Paths
+      summary: Paths Delete
+      description: Paths Delete
+      security:
+        - JWT: []
+      operationId: paths_delete
+      produces:
+        - application/json
+      parameters:
+        - name: id
+          in: path
+          description: Element Id
+          required: true
+          type: integer
+      responses:
+        '200':
+          description: successful operation
+          schema:
+            $ref: '#/definitions/dataDefaultResponse'
+        '400':
+          $ref: '#/responses/Standard400ErrorResponse'
+        '403':
+          $ref: '#/responses/Standard403ErrorResponse'
+        '404':
+          $ref: '#/responses/Standard404ErrorResponse'
+        '500':
+          $ref: '#/responses/Standard500ErrorResponse'
+  '/paths/{id}/image':
+    post:
+      tags:
+        - Paths
+      summary: Path Image
+      description: Path Image
+      security:
+        - JWT: []
+      operationId: paths_postImage
+      consumes:
+        - multipart/form-data
+      parameters:
+        - name: id
+          in: path
+          description: Path id
+          required: true
+          type: integer
+        - in: formData
+          name: archivo
+          type: file
+          description: The file to upload.
+      produces:
+        - application/json
+      responses:
+        '200':
+          description: successful operation
+          schema:
+            $ref: '#/definitions/successCreated'
+        '400':
+          $ref: '#/responses/Standard400ErrorResponse'
+    get:
+      tags:
+        - Paths
+      summary: Download Path Image
+      description: Download Path Image
+      security:
+        - JWT: []
+      operationId: paths_getImage
+      parameters:
+        - name: id
+          in: path
+          description: Path id
+          required: true
+          type: integer
+      produces:
+        - image/png
+      responses:
+        '200':
+          description: successful operation
+          schema:
+            type: file
+        '400':
+          $ref: '#/responses/Standard400ErrorResponse'
+    delete:
+      tags:
+        - Paths
+      summary: Delete Path Image
+      description: Delete Path Image
+      security:
+        - JWT: []
+      operationId: paths_deleteImage
+      parameters:
+        - name: id
+          in: path
+          description: Path id
+          required: true
+          type: integer
+      produces:
+        - application/json
+      responses:
+        '200':
+          description: successful operation
+          schema:
+            $ref: '#/definitions/successCreated'
+        '400':
+          $ref: '#/responses/Standard400ErrorResponse'
+definitions:
+  dataDefaultResponse:
+    description: Respuesta por defecto de un POST
+    type: object
+    properties:
+      status:
+        type: integer
+        description: Descripcion del resultado
+      message:
+        type: string
+        description: Mensage
+      code:
+        description: An application-generic code or support purposes
+        type: string
+    required:
+      - status
+      - message
+      - code
+  successResponse:
+    description: Success response
+    type: object
+    properties:
+      status:
+        description: HTTP 200 (Success)
+        type: integer
+        enum:
+          - 200
+      message:
+        type: string
+        description: Success
+      code:
+        description: An application-generic code
+        type: string
+    required:
+      - status
+      - message
+  successCreated:
+    description: Success response
+    type: object
+    properties:
+      status:
+        description: HTTP 200 (Created)
+        type: integer
+        enum:
+          - 200
+          - 201
+      message:
+        type: string
+        description: Created
+      code:
+        description: An application-generic code
+        type: string
+    required:
+      - status
+      - message
+  successDelete:
+    description: Success response
+    type: object
+    properties:
+      status:
+        description: HTTP 204 (No Content)
+        type: integer
+        enum:
+          - 200
+          - 201
+          - 202
+          - 203
+          - 204
+      message:
+        type: string
+        description: Deleted
+      code:
+        description: An application-generic code
+        type: string
+    required:
+      - status
+      - message
+  AuthResponse:
+    description: User authentication response
+    type: object
+    properties:
+      user:
+        type: integer
+        description: User ID
+      organization:
+        type: object
+        description: organization Data
+        properties:
+          id:
+            type: integer
+            description: ID
+          name:
+            type: string
+            description: Name
+          description:
+            type: string
+            description: Description
+          domain:
+            type: string
+            description: domain
+          photo_url:
+            type: string
+            description: Photo Url
+        required:
+          - id
+      token:
+        type: string
+        description: Authorization token
+    required:
+      - user
+      - organization
+      - token
+  ErrorResponse:
+    description: Standard Error response
+    type: object
+    properties:
+      status:
+        description: 'HTTP 4XX, 5XX status code'
+        type: integer
+        enum:
+          - 400
+          - 401
+          - 403
+          - 404
+          - 409
+          - 422
+          - 429
+          - 500
+          - 502
+          - 503
+          - 504
+      message:
+        description: Brief overview of the error
+        type: string
+      code:
+        description: >-
+          An application-generic code that identifies the error for logging or
+          support purposes
+        type: string
+      errors:
+        description: Specific errors if many
+        type: array
+        items:
+          properties:
+            code:
+              description: >-
+                An application-specific code that identifies the error for
+                logging or support purposes
+              type: string
+            title:
+              description: 'A short, human-readable message that briefly describes the error'
+              type: string
+            detail:
+              description: >-
+                A more in-depth, human-readable description of the error and how
+                to resolve it
+              type: string
+    required:
+      - status
+      - message
+      - code
+  UnexpectedErrorResponse:
+    description: Unexpected Error response
+    type: object
+    properties:
+      status:
+        description: 'HTTP 4XX, 5XX status code'
+        type: integer
+        enum:
+          - 400
+          - 401
+          - 403
+          - 404
+          - 409
+          - 422
+          - 429
+          - 500
+          - 502
+          - 503
+          - 504
+      message:
+        description: Brief overview of the error
+        type: string
+    required:
+      - status
+  userAuthData:
+    description: User auth data
+    type: object
+    properties:
+      email:
+        type: string
+        maxLength: 80
+        description: Email of the user
+      password:
+        type: string
+        minLength: 8
+        maxLength: 20
+        pattern: ^(?!\s*$).+
+        description: User's password
+    required:
+      - password
+      - email
+  UserRegisterResponse:
+    description: Transaction Confirm Information
+    type: object
+    properties:
+      email:
+        type: string
+        description: Email that was registered
+      name:
+        type: string
+        description: Name of the user that was registered
+      lastname:
+        type: string
+        description: Lastname of the user that was registered
+    required:
+      - email
+      - name
+      - lastname
+  userData:
+    description: User Data
+    type: object
+    properties:
+      email:
+        type: string
+        description: Email of the user
+      password:
+        type: string
+        description: User's password
+      firstname:
+        type: string
+        description: User's first name
+      lastname:
+        type: string
+        description: User's last name
+    required:
+      - email
+      - password
+      - firstname
+      - lastname
+  userConnect:
+    description: Connect Data
+    type: object
+    properties:
+      name:
+        type: string
+        description: Organization Name
+      domain:
+        type: string
+        description: Organization Domain
+      description:
+        type: string
+        description: Organization Description
+      token:
+        type: string
+        description: token
+      photo_url:
+        type: string
+        description: url
+      acclaim_id:
+        type: string
+        format: uuid
+        description: acclaim id
+    required:
+      - name
+      - domain
+      - description
+      - token
+      - photo_url
+      - acclaim_id
+  userAcclaim:
+    description: Connect Data
+    type: object
+    properties:
+      id:
+        type: string
+        format: uuid
+        description: Id en formato UUID
+      token:
+        type: string
+        description: Organization token
+    required:
+      - id
+      - token
+  UserConnectResponse:
+    description: Transaction Connect Information
+    type: object
+    properties:
+      organization:
+        type: integer
+        description: organization ID
+    required:
+      - organization
+  UserAcclaimResponse:
+    description: Transaction Connect Information
+    type: object
+    properties:
+      organization:
+        type: integer
+        description: organization ID
+    required:
+      - organization
+  UserBadgeResponse:
+    description: Badge Template List
+    type: array
+    items:
+      type: object
+  dataComboString:
+    description: Listado Simple
+    type: array
+    items:
+      $ref: '#/definitions/dataListadoString'
+  dataListadoString:
+    description: Descripcion o Nombre
+    type: object
+    properties:
+      descripcion:
+        type: string
+        description: Descripcion
+    required:
+      - descripcion
+  dataUser:
+    description: User Data
+    type: object
+    properties:
+      id:
+        type: integer
+        description: User Id (integer)
+      firstname:
+        type: string
+        description: Nombre
+      lastname:
+        type: string
+        description: Apellido
+      email:
+        type: string
+        description: email
+      type:
+        type: string
+        description: Tipo
+      status:
+        type: string
+        description: Estatus
+      organization_id:
+        type: integer
+        description: Id de la Organizacion
+      organization_name:
+        type: string
+        description: Name
+      organization_description:
+        type: string
+        description: Description
+      organization_domain:
+        type: string
+        description: domain
+      organization_photo_url:
+        type: string
+        description: Photo Url
+    required:
+      - id
+      - firstname
+      - lastname
+      - email
+      - status
+      - organization_id
+      - organization_name
+      - organization_description
+      - organization_domain
+      - organization_photo_url
+  dataUsers:
+    description: Users List
+    type: array
+    items:
+      $ref: '#/definitions/dataUser'
+  dataElement:
+    description: Element Data
+    type: object
+    properties:
+      id:
+        type: integer
+        description: Element Id (integer)
+      name:
+        type: string
+        description: Nombre
+      issuer:
+        type: string
+        description: Editor
+      issuer_url:
+        type: string
+        description: URL de acceso al editor
+      category:
+        type: string
+        description: Categoria
+      duration:
+        type: integer
+        description: 'Duracion (minutos, horas, dias)'
+      description:
+        type: string
+        description: Descripcion
+      skills:
+        type: string
+        description: Habilidades
+      tags:
+        type: string
+        description: Etiquetas
+      criterion:
+        type: string
+        description: Criterios
+      materiality:
+        type: string
+        description: Materialidad
+      score:
+        type: integer
+        description: Puntuacion
+      image_url:
+        type: string
+        description: URL de la imagen
+      created_at:
+        type: string
+        format: datetime
+        description: Fecha de creacion
+      updated_at:
+        type: string
+        format: datetime
+        description: Fecha de Actualizacion
+      expire_at:
+        type: string
+        format: datetime
+        description: Fecha de Expiracion
+      language:
+        type: string
+        description: Idioma
+      badge_id:
+        type: string
+        description: Placa
+      organization_id:
+        type: integer
+        description: Id de la Organizacion
+      level:
+        type: string
+        description: Level
+    required:
+      - id
+      - name
+      - score
+      - image_url
+      - created_at
+      - updated_at
+      - language
+  dataElements:
+    description: Elements List
+    type: array
+    items:
+      $ref: '#/definitions/dataElement'
+  paramElementPost:
+    description: Element data
+    type: object
+    properties:
+      name:
+        type: string
+        minLength: 5
+        description: Nombre
+      issuer:
+        type: string
+        description: Editor
+      issuer_url:
+        type: string
+        description: URL de acceso al editor
+      category:
+        type: string
+        description: Categoria
+      duration:
+        type: integer
+        description: 'Duracion (minutos, horas, dias)'
+      description:
+        type: string
+        description: Descripcion
+      skills:
+        type: string
+        description: Habilidades
+      tags:
+        type: string
+        description: Etiquetas
+      criterion:
+        type: string
+        description: Criterios
+      materiality:
+        type: string
+        enum:
+          - KNOWLEDGE
+          - SKILL
+          - EXCELLENCE
+          - CERTIFICATION
+          - EXPERTISE
+          - MEMBERSHIP
+          - PARTICIPATION
+        description: Materialidad
+      score:
+        type: integer
+        description: Puntuacion
+      image_url:
+        type: string
+        description: URL de la imagen
+      expire_at:
+        type: string
+        description: Fecha de Expiracion
+      language:
+        type: string
+        description: Idioma
+      badge_id:
+        type: string
+        description: Placa
+      level:
+        type: string
+        enum:
+          - Fundational
+          - Intermediate
+          - Advanced
+        description: Level
+    required:
+      - name
+      - issuer
+      - materiality
+      - score
+      - language
+  paramElementPut:
+    description: Element data
+    type: object
+    properties:
+      id:
+        type: integer
+        description: Element Id (integer)
+      name:
+        type: string
+        minLength: 5
+        description: Nombre
+      issuer:
+        type: string
+        description: Editor
+      issuer_url:
+        type: string
+        description: URL de acceso al editor
+      category:
+        type: string
+        description: Categoria
+      duration:
+        type: integer
+        description: 'Duracion (minutos, horas, dias)'
+      description:
+        type: string
+        description: Descripcion
+      skills:
+        type: string
+        description: Habilidades
+      tags:
+        type: string
+        description: Etiquetas
+      criterion:
+        type: string
+        description: Criterios
+      materiality:
+        type: string
+        enum:
+          - KNOWLEDGE
+          - SKILL
+          - EXCELLENCE
+          - CERTIFICATION
+          - EXPERTISE
+          - MEMBERSHIP
+          - PARTICIPATION
+        description: Materialidad
+      score:
+        type: integer
+        description: Puntuacion
+      image_url:
+        type: string
+        description: URL de la imagen
+      expire_at:
+        type: string
+        description: Fecha de Expiracion
+      language:
+        type: string
+        description: Idioma
+      badge_id:
+        type: string
+        description: Placa
+      level:
+        type: string
+        enum:
+          - Fundational
+          - Intermediate
+          - Advanced
+        description: Level
+    required:
+      - id
+      - name
+      - issuer
+      - materiality
+      - score
+      - language
+  dataPath:
+    description: Element Data
+    type: object
+    properties:
+      id:
+        type: integer
+        description: Element Id (integer)
+      name:
+        type: string
+        description: Nombre
+      description:
+        type: string
+        description: Descripcion
+      skills:
+        type: string
+        description: Habilidades
+      tags:
+        type: string
+        description: Etiquetas
+      criterion:
+        type: string
+        description: Criterios
+      materiality:
+        type: string
+        description: Materialidad
+      difficulty:
+        type: string
+        description: Dificultad
+      image_url:
+        type: string
+        description: URL de la imagen
+      created_at:
+        type: string
+        format: datetime
+        description: Fecha de creacion
+      updated_at:
+        type: string
+        format: datetime
+        description: Fecha de Actualizacion
+      expire_at:
+        type: string
+        format: datetime
+        description: Fecha de Expiracion
+      score:
+        type: integer
+        description: Puntuacion
+      language:
+        type: string
+        description: Idioma
+      organization_id:
+        type: integer
+        description: Id de la Organizacion
+    required:
+      - id
+      - name
+      - score
+      - image_url
+      - created_at
+      - updated_at
+      - language
+  dataPaths:
+    description: Paths List
+    type: array
+    items:
+      $ref: '#/definitions/dataPath'
+  paramPathPost:
+    description: Path data
+    type: object
+    properties:
+      name:
+        type: string
+        minLength: 5
+        description: Nombre
+      description:
+        type: string
+        description: Descripcion
+      skills:
+        type: string
+        description: Habilidades
+      tags:
+        type: string
+        description: Etiquetas
+      criterion:
+        type: string
+        description: Criterios
+      materiality:
+        type: string
+        enum:
+          - KNOWLEDGE
+          - SKILL
+          - EXCELLENCE
+          - CERTIFICATION
+          - EXPERTISE
+          - MEMBERSHIP
+          - PARTICIPATION
+        description: Materialidad
+      difficulty:
+        type: string
+        enum:
+          - EASY
+          - MEDIUM
+          - HARD
+        description: Dificultad
+      image_url:
+        type: string
+        description: URL de la imagen
+      expire_at:
+        type: string
+        description: Fecha de Expiracion
+      score:
+        type: integer
+        description: Puntuacion
+      language:
+        type: string
+        description: Idioma
+      tree:
+        description: Element Tree
+        type: array
+        items:
+          type: object
+          properties:
+            parent:
+              type: integer
+              description: Parent id en formato Entero
+            element:
+              type: integer
+              description: Element id en formato Entero
+            x:
+              type: number
+              description: Posicion eje X
+            'y':
+              type: number
+              description: Posicion eje Y
+            width:
+              type: number
+              description: Ancho
+            high:
+              type: number
+              description: Alto
+          required:
+            - element
+    required:
+      - name
+      - materiality
+      - difficulty
+      - score
+      - language
+  paramPathPut:
+    description: Path data
+    type: object
+    properties:
+      id:
+        type: integer
+        description: Path Id (integer)
+      name:
+        type: string
+        minLength: 5
+        description: Nombre
+      description:
+        type: string
+        description: Descripcion
+      skills:
+        type: string
+        description: Habilidades
+      tags:
+        type: string
+        description: Etiquetas
+      criterion:
+        type: string
+        description: Criterios
+      materiality:
+        type: string
+        enum:
+          - KNOWLEDGE
+          - SKILL
+          - EXCELLENCE
+          - CERTIFICATION
+          - EXPERTISE
+          - MEMBERSHIP
+          - PARTICIPATION
+        description: Materialidad
+      difficulty:
+        type: string
+        enum:
+          - EASY
+          - MEDIUM
+          - HARD
+        description: Dificultad
+      image_url:
+        type: string
+        description: URL de la imagen
+      expire_at:
+        type: string
+        description: Fecha de Expiracion
+      score:
+        type: integer
+        description: Puntuacion
+      language:
+        type: string
+        description: Idioma
+      tree:
+        description: Element Tree
+        type: array
+        items:
+          type: object
+          properties:
+            parent:
+              type: integer
+              description: Parent id en formato Entero
+            element:
+              type: integer
+              description: Element id en formato Entero
+            x:
+              type: number
+              description: Posicion eje X
+            'y':
+              type: number
+              description: Posicion eje Y
+            width:
+              type: number
+              description: Ancho
+            high:
+              type: number
+              description: Alto
+          required:
+            - element
+    required:
+      - id
+      - name
+      - materiality
+      - difficulty
+      - score
+      - language
+  paramInvitePost:
+    description: Invite data
+    type: object
+    properties:
+      guests:
+        description: Lista de Invitados
+        type: array
+        items:
+          type: object
+          properties:
+            firstname:
+              type: string
+              description: Nombre del Invitado
+            lastname:
+              type: string
+              description: Apellido del Invitado
+            email:
+              type: string
+              description: Correo Electronico del Invitado
+          required:
+            - email
+    required:
+      - guests
+  paramConfirmPost:
+    description: Confirm Data
+    type: object
+    properties:
+      code:
+        type: string
+        description: Codigo enviamo en el correo de confirmacion
+      password:
+        type: string
+        description: User's password
+      firstname:
+        type: string
+        description: User's first name
+      lastname:
+        type: string
+        description: User's last name
+    required:
+      - code
+      - password
+      - firstname
+      - lastname
+responses:
+  Standard400ErrorResponse:
+    description: Malformed request.
+    schema:
+      $ref: '#/definitions/ErrorResponse'
+  Standard401ErrorResponse:
+    description: >-
+      Unauthorized. The request requires user authentication (not logged in).
+      Also used for invalid OAuth credentials.
+    schema:
+      $ref: '#/definitions/ErrorResponse'
+  Standard403ErrorResponse:
+    description: >-
+      Forbidden. Also used for unauthorized requests such as improper OAuth
+      scopes or permissions issues
+    schema:
+      $ref: '#/definitions/ErrorResponse'
+  Standard404ErrorResponse:
+    description: Resource not found.
+    schema:
+      $ref: '#/definitions/ErrorResponse'
+  Standard500ErrorResponse:
+    description: An unexpected error occured.
+    schema:
+      $ref: '#/definitions/UnexpectedErrorResponse'
+parameters:
+  auth_data:
+    name: auth_data
+    in: body
+    description: User's data for authentication
+    required: true
+    schema:
+      $ref: '#/definitions/userAuthData'
+  user_register_data:
+    name: user_register_data
+    in: body
+    description: User's data
+    required: true
+    schema:
+      $ref: '#/definitions/userData'
+  user_connect_data:
+    name: user_connect_data
+    in: body
+    description: User's data
+    required: true
+    schema:
+      $ref: '#/definitions/userConnect'
+  user_acclaim_data:
+    name: user_acclaim_data
+    in: body
+    description: Acclaim data
+    required: true
+    schema:
+      $ref: '#/definitions/userAcclaim'
+  paramInvitePost:
+    name: user_invite_atda
+    in: body
+    description: Invite data
+    required: true
+    schema:
+      $ref: '#/definitions/paramInvitePost'
+  paramConfirmPost:
+    name: user_confirm_data
+    in: body
+    description: Confirm data
+    required: true
+    schema:
+      $ref: '#/definitions/paramConfirmPost'
+  paramElementPost:
+    name: Element
+    in: body
+    description: Element data
+    required: true
+    schema:
+      $ref: '#/definitions/paramElementPost'
+  paramElementPut:
+    name: Element
+    in: body
+    description: Element data
+    required: true
+    schema:
+      $ref: '#/definitions/paramElementPut'
+  paramPathPost:
+    name: Path
+    in: body
+    description: Path data
+    required: true
+    schema:
+      $ref: '#/definitions/paramPathPost'
+  paramPathPut:
+    name: Path
+    in: body
+    description: Path data
+    required: true
+    schema:
+      $ref: '#/definitions/paramPathPut'

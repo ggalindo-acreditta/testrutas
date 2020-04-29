@@ -1,0 +1,9 @@
+ALTER TABLE public.msg ADD CONSTRAINT msg_msg_priority_fkey FOREIGN KEY (msg_priority)
+        REFERENCES public.msg_priority (msg_priority) MATCH SIMPLE
+        ON UPDATE NO ACTION
+        ON DELETE NO ACTION;
+
+ALTER TABLE public.msg ADD CONSTRAINT msg_msg_type_fkey FOREIGN KEY (msg_type)
+        REFERENCES public.msg_type (msg_type) MATCH SIMPLE
+        ON UPDATE NO ACTION
+        ON DELETE NO ACTION

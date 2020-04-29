@@ -1,0 +1,29 @@
+description: Connect Data
+type: object
+properties:
+  name:
+    type: string
+    description: Organization Name
+  domain:
+    type: string
+    description: Organization Domain
+  description:
+    type: string
+    description: Organization Description
+  token:
+    type: string 
+    description: token
+  photo_url:
+    type: string
+    description: url
+  acclaim_id:
+    type: string
+    format: uuid
+    description: acclaim id
+required:
+  - name
+  - domain
+  - description
+  - token
+  - photo_url
+  - acclaim_id

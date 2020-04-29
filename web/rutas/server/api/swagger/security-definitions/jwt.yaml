@@ -1,0 +1,4 @@
+type: apiKey
+description: JWT security schema
+name: Authorization
+in: header

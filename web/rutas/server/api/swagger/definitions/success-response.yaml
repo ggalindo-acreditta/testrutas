@@ -1,0 +1,17 @@
+description: Success response
+type: object
+properties:
+  status:
+    description: HTTP 200 (Success)
+    type: integer
+    enum:
+      - 200
+  message:
+    type: string
+    description: Success
+  code:
+    description: An application-generic code
+    type: string
+required:
+  - status
+  - message

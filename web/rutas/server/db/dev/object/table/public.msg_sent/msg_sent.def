@@ -1,0 +1,15 @@
+CREATE TABLE public.msg_sent
+(
+    msg uuid NOT NULL,
+    msg_type smallint NOT NULL,
+    msg_carrier character varying(50) COLLATE pg_catalog."default" NOT NULL,
+    msg_priority smallint NOT NULL,
+    created_date timestamp without time zone NOT NULL,
+    sent_date timestamp without time zone,
+    tries smallint NOT NULL DEFAULT 0,
+    max_tries smallint NOT NULL DEFAULT 100,
+    address character varying(50) COLLATE pg_catalog."default" NOT NULL,
+    subject character varying(100) COLLATE pg_catalog."default" NOT NULL,
+    template character varying(20) COLLATE pg_catalog."default" NOT NULL,
+    data json NOT NULL
+);

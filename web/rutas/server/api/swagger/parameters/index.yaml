@@ -1,0 +1,23 @@
+auth_data:
+  $ref: ./auth-data.yaml
+user_register_data:
+  $ref: ./user-register-data.yaml
+user_connect_data:
+  $ref: ./user-connect-data.yaml
+user_acclaim_data:
+  $ref: ./user-acclaim-data.yaml
+
+paramInvitePost:
+  $ref: ./param-invite-post.yaml
+paramConfirmPost:
+  $ref: ./param-confirm-post.yaml
+
+paramElementPost:
+  $ref: ./param-element-post.yaml
+paramElementPut:
+  $ref: ./param-element-put.yaml
+
+paramPathPost:
+  $ref: ./param-path-post.yaml
+paramPathPut:
+  $ref: ./param-path-put.yaml

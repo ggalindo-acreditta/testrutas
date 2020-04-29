@@ -1,0 +1,4 @@
+JWT:
+  $ref: ./jwt.yaml
+ClientSecurity:
+  $ref: ./client-security.yaml

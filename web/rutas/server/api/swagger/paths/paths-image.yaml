@@ -1,0 +1,80 @@
+post:
+  tags:
+    - Paths
+  summary: Path Image
+  description: 'Path Image'
+  security:
+    - JWT: []
+  #x-swagger-router-controller: "user"
+  operationId: paths_postImage
+  consumes:
+        - multipart/form-data
+  parameters:
+        - name: id
+          in: path
+          description: Path id
+          required: true
+          type: integer
+        - in: formData
+          name: archivo
+          type: file
+          description: The file to upload.
+  produces:
+    - application/json 
+  responses:
+    '200':
+      description: successful operation
+      schema:
+        $ref: '#/definitions/successCreated'
+    '400':
+      "$ref": "#/responses/Standard400ErrorResponse"
+
+get:
+  tags:
+    - Paths
+  summary: Download Path Image
+  description: 'Download Path Image'
+  security:
+    - JWT: []
+  #x-swagger-router-controller: "user"
+  operationId: paths_getImage
+  parameters:
+    - name: id
+      in: path
+      description: Path id
+      required: true
+      type: integer
+  produces:
+    - image/png
+  responses:
+    '200':
+      description: successful operation
+      schema:
+        type: file
+    '400':
+      "$ref": "#/responses/Standard400ErrorResponse"
+
+delete:
+  tags:
+    - Paths
+  summary: Delete Path Image
+  description: 'Delete Path Image'
+  security:
+    - JWT: []
+  #x-swagger-router-controller: "user"
+  operationId: paths_deleteImage
+  parameters:
+    - name: id
+      in: path
+      description: Path id
+      required: true
+      type: integer
+  produces:
+    - application/json 
+  responses:
+    '200':
+      description: successful operation
+      schema:
+        $ref: '#/definitions/successCreated'
+    '400':
+      "$ref": "#/responses/Standard400ErrorResponse"

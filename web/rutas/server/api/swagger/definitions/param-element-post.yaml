@@ -1,0 +1,70 @@
+description: Element data
+type: object
+properties:
+  name:
+    type: string
+    minLength: 5
+    description: Nombre 
+  issuer:
+    type: string
+    description: Editor
+  issuer_url:
+    type: string
+    description: URL de acceso al editor
+  category:
+    type: string
+    description: Categoria
+  duration:
+    type: integer
+    description: Duracion (minutos, horas, dias)
+  description:
+    type: string
+    description: Descripcion 
+  skills:
+    type: string
+    description: Habilidades 
+  tags:
+    type: string
+    description: Etiquetas 
+  criterion:
+    type: string
+    description: Criterios 
+  materiality:
+    type: string
+    enum:
+      - KNOWLEDGE
+      - SKILL
+      - EXCELLENCE
+      - CERTIFICATION
+      - EXPERTISE
+      - MEMBERSHIP
+      - PARTICIPATION
+    description: Materialidad 
+  score:
+    type: integer
+    description: Puntuacion
+  image_url:
+    type: string
+    description: URL de la imagen 
+  expire_at:
+    type: string
+    description: Fecha de Expiracion
+  language:
+    type: string
+    description: Idioma
+  badge_id:
+    type: string
+    description: Placa
+  level:
+    type: string
+    enum:
+      - Fundational
+      - Intermediate
+      - Advanced
+    description: Level 
+required:
+  - name
+  - issuer
+  - materiality
+  - score
+  - language

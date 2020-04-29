@@ -1,0 +1,23 @@
+description: Unexpected Error response
+type: object
+properties:
+  status:
+    description: HTTP 4XX, 5XX status code
+    type: integer
+    enum:
+    - 400
+    - 401
+    - 403
+    - 404
+    - 409
+    - 422
+    - 429
+    - 500
+    - 502
+    - 503
+    - 504
+  message:
+    description: Brief overview of the error
+    type: string
+required:
+- status

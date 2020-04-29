@@ -1,0 +1,6 @@
+CREATE TABLE public.msg_queue
+(
+    msg uuid NOT NULL,
+    msg_carrier character varying(50) COLLATE pg_catalog."default" NOT NULL,
+    queue_date timestamp without time zone NOT NULL DEFAULT now()
+);

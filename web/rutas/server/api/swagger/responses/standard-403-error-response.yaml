@@ -1,0 +1,4 @@
+description: Forbidden. Also used for unauthorized requests such as improper
+  OAuth scopes or permissions issues
+schema:
+  $ref: "#/definitions/ErrorResponse"

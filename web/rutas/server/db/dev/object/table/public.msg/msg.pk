@@ -1,0 +1,1 @@
+ALTER TABLE public.msg ADD CONSTRAINT msg_priority_pkey PRIMARY KEY (msg_priority);

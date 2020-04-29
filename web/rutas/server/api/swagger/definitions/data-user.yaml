@@ -1,0 +1,47 @@
+description: User Data
+type: object
+properties:
+  id:
+    type: integer
+    description: User Id (integer)
+  firstname:
+    type: string
+    description: Nombre 
+  lastname:
+    type: string
+    description: Apellido
+  email:
+    type: string
+    description: email
+  type:
+    type: string
+    description: Tipo
+  status:
+    type: string
+    description: Estatus
+  organization_id:
+    type: integer
+    description: Id de la Organizacion  
+  organization_name:
+    type: string
+    description: Name
+  organization_description:
+    type: string
+    description: Description
+  organization_domain:
+    type: string
+    description: domain
+  organization_photo_url:
+    type: string
+    description: Photo Url
+required:
+  - id
+  - firstname
+  - lastname
+  - email
+  - status
+  - organization_id
+  - organization_name
+  - organization_description
+  - organization_domain
+  - organization_photo_url

@@ -1,0 +1,46 @@
+description: Standard Error response
+type: object
+properties:
+  status:
+    description: HTTP 4XX, 5XX status code
+    type: integer
+    enum:
+    - 400
+    - 401
+    - 403
+    - 404
+    - 409
+    - 422
+    - 429
+    - 500
+    - 502
+    - 503
+    - 504
+  message:
+    description: Brief overview of the error
+    type: string
+  code:
+    description: An application-generic code that identifies the error for logging
+      or support purposes
+    type: string
+  errors:
+    description: Specific errors if many
+    type: array
+    items:
+      properties:
+        code:
+          description: An application-specific code that identifies the error
+            for logging or support purposes
+          type: string
+        title:
+          description: A short, human-readable message that briefly describes
+            the error
+          type: string
+        detail:
+          description: A more in-depth, human-readable description of the error
+            and how to resolve it
+          type: string
+required:
+  - status
+  - message
+  - code

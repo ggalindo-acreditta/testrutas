@@ -1,0 +1,6 @@
+name: user_invite_atda
+in: body
+description: Invite data
+required: true
+schema:
+  $ref: '#/definitions/paramInvitePost'

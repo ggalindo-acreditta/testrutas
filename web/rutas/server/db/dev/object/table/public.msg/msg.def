@@ -1,0 +1,14 @@
+CREATE TABLE public.msg(
+    msg uuid not null default uf_genuuid('seq_msg'),
+    msg_type smallint not null,
+    msg_priority smallint not null,
+    created_date timestamp not null,
+    last_attempt_date timestamp null,
+    tries smallint not null default 0,
+    max_tries smallint not null default 100,
+    errortext varchar(500) null,
+    address varchar (200) not null,
+    subject varchar (100) not null,
+    template varchar (20) not null,
+    data json not null
+);

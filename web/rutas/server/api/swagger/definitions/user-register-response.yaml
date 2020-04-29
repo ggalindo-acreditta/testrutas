@@ -1,0 +1,16 @@
+description: Transaction Confirm Information
+type: object
+properties:
+  email:
+    type: string
+    description: Email that was registered
+  name:
+    type: string
+    description: Name of the user that was registered
+  lastname:
+    type: string
+    description: Lastname of the user that was registered
+required:
+  - email
+  - name
+  - lastname

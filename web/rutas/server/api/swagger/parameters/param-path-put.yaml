@@ -1,0 +1,6 @@
+name: Path
+in: body
+description: Path data
+required: true
+schema:
+  $ref: '#/definitions/paramPathPut'

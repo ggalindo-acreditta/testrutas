@@ -1,0 +1,15 @@
+select
+'$2a$10$/w6FqmbP4T1RZ4lwRMuA5e83HXEf/jgPNWVTC1fZimg2m3DegBORe' as gen_password,
+'654321' as gen_password_raw,
+'00000000-0000-0000-0000-000000000000' as gen_uuid,
+(select gen_country from gen_country where code = 'VEN') as gen_country_id,
+(select code from gen_country where code = 'VEN') as gen_country_code,
+(select name from gen_country where code = 'VEN') as gen_country_name,
+(select gen_language from gen_language where code = 'en') as gen_language_id,
+(select code from gen_language where code = 'en') as gen_language_code,
+(select name from gen_language where code = 'en') as gen_language_name,
+(select gen_timezone from gen_timezone where name = 'America/Caracas') as gen_timezone_id,
+(select name from vw_gen_timezone where name = 'America/Caracas') as gen_timezone_name,
+(select abbrev from vw_gen_timezone where name = 'America/Caracas') as gen_timezone_abbrev,
+(select utc_offset from vw_gen_timezone where name = 'America/Caracas') as gen_timezone_utc_offset,
+(select is_dst from vw_gen_timezone where name = 'America/Caracas') as gen_timezone_is_dst

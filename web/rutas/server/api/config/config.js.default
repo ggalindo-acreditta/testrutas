@@ -1,0 +1,47 @@
+module.exports = {
+  database: 'postgres://postgres:sql@localhost:5432/Acreditta',
+  port: 3000,
+  mock: {
+    enabled: false,
+    mode: 'stub', // stub, json-server
+    host: 'http://localhost:8002'
+  },
+  path: {
+    elementImage: '',
+    servidor: 'C:\\Users\\jmachado\\Documents\\Proyectos\\Acredita\\api\\'
+  },
+  hashkey: 'password',
+  jwtSecret: 'SECRET-PARA-JWT',
+  sessionSecret: 'SECRET-PARA-REDIS',
+  redisHost: 'localhost',
+  redisPort: 6379,
+  redisTtl: 86400,
+  registro: {
+    invitacion: {
+      subject: 'Subject del correo invitacion',
+      url: 'URL para aceptar la invitacion y entrar al area de registro',
+      tiempoExpiracion: 1 // El tiempo se escribe en hrs
+    },
+    autoregustro: {
+      subject: 'Subject del correo autoregistro',
+    }
+  },
+  logoUrl: 'http://www.binwus.com/wp-content/uploads/2018/01/binwus-2.png',
+  confirmUrl: 'https://rutas.acreditta.com',
+  acclaimUrl: 'https://api.youracclaim.com/v1/organizations/',
+  inviteUrl: 'https://rutas.acreditta.com',
+  message: {
+    email: {
+      replyTo: "soporte@acreditta.com", 
+      smtp: [{carrier: "smtp.live.com", limit: 400, config: {
+        host: "smtp.live.com",
+        port: 587,
+        secure: false, 
+        auth: {
+          user: "correo@hotmail.com",
+          pass: "Jpassword"
+        }
+      }}]
+    }
+  }
+};

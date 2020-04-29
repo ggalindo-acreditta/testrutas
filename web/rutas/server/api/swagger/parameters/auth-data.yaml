@@ -1,0 +1,6 @@
+name: auth_data
+in: body
+description: User's data for authentication
+required: true
+schema:
+  $ref: '#/definitions/userAuthData'

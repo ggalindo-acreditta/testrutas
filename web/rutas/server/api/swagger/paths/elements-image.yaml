@@ -1,0 +1,80 @@
+post:
+  tags:
+    - Elements
+  summary: Element Image
+  description: 'Element Image'
+  security:
+    - JWT: []
+  #x-swagger-router-controller: "user"
+  operationId: elements_postImage
+  consumes:
+        - multipart/form-data
+  parameters:
+        - name: id
+          in: path
+          description: Element id
+          required: true
+          type: integer
+        - in: formData
+          name: archivo
+          type: file
+          description: The file to upload.
+  produces:
+    - application/json 
+  responses:
+    '200':
+      description: successful operation
+      schema:
+        $ref: '#/definitions/successCreated'
+    '400':
+      "$ref": "#/responses/Standard400ErrorResponse"
+
+get:
+  tags:
+    - Elements
+  summary: Download Element Image
+  description: 'Download Element Image'
+  security:
+    - JWT: []
+  #x-swagger-router-controller: "user"
+  operationId: elements_getImage
+  parameters:
+    - name: id
+      in: path
+      description: Element id
+      required: true
+      type: integer
+  produces:
+    - image/png
+  responses:
+    '200':
+      description: successful operation
+      schema:
+        type: file
+    '400':
+      "$ref": "#/responses/Standard400ErrorResponse"
+
+delete:
+  tags:
+    - Elements
+  summary: Delete Element Image
+  description: 'Delete Element Image'
+  security:
+    - JWT: []
+  #x-swagger-router-controller: "user"
+  operationId: elements_deleteImage
+  parameters:
+    - name: id
+      in: path
+      description: Element id
+      required: true
+      type: integer
+  produces:
+    - application/json 
+  responses:
+    '200':
+      description: successful operation
+      schema:
+        $ref: '#/definitions/successCreated'
+    '400':
+      "$ref": "#/responses/Standard400ErrorResponse"

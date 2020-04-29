@@ -1,0 +1,6 @@
+name: Element
+in: body
+description: Element data
+required: true
+schema:
+  $ref: '#/definitions/paramElementPost'

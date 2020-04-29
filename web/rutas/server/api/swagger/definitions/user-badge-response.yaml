@@ -1,0 +1,4 @@
+description: Badge Template List
+type: array 
+items:
+  type: object

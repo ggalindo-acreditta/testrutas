@@ -1,0 +1,74 @@
+description: Element Data
+type: object
+properties:
+  id:
+    type: integer
+    description: Element Id (integer)
+  name:
+    type: string
+    description: Nombre 
+  issuer:
+    type: string
+    description: Editor
+  issuer_url:
+    type: string
+    description: URL de acceso al editor
+  category:
+    type: string
+    description: Categoria
+  duration:
+    type: integer
+    description: Duracion (minutos, horas, dias)
+  description:
+    type: string
+    description: Descripcion 
+  skills:
+    type: string
+    description: Habilidades 
+  tags:
+    type: string
+    description: Etiquetas 
+  criterion:
+    type: string
+    description: Criterios 
+  materiality:
+    type: string
+    description: Materialidad 
+  score:
+    type: integer
+    description: Puntuacion
+  image_url:
+    type: string
+    description: URL de la imagen 
+  created_at:
+    type: string
+    format: datetime
+    description: Fecha de creacion
+  updated_at:
+    type: string
+    format: datetime
+    description: Fecha de Actualizacion
+  expire_at:
+    type: string
+    format: datetime
+    description: Fecha de Expiracion
+  language:
+    type: string
+    description: Idioma
+  badge_id:
+    type: string
+    description: Placa
+  organization_id:
+    type: integer
+    description: Id de la Organizacion
+  level:
+    type: string
+    description: Level 
+required:
+  - id
+  - name
+  - score
+  - image_url
+  - created_at
+  - updated_at
+  - language

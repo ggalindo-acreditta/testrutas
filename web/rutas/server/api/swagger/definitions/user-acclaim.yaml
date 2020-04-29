@@ -1,0 +1,13 @@
+description: Connect Data
+type: object
+properties:
+  id:
+    type: string
+    format: uuid
+    description: Id en formato UUID
+  token:
+    type: string
+    description: Organization token
+required:
+  - id
+  - token

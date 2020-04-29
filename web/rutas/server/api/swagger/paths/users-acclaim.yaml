@@ -1,0 +1,17 @@
+post:
+  tags:
+    - User
+  summary: Organization Connect
+  description: 'Organization Connect'
+  operationId: users_organizationAcclaim
+  produces:
+    - application/json
+  parameters:
+    - $ref : "#/parameters/user_acclaim_data"
+  responses:
+    '200':
+      description: successful operation
+      schema:
+        $ref: '#/definitions/UserAcclaimResponse'
+    '400':
+      "$ref": "#/responses/Standard400ErrorResponse"

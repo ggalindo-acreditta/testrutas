@@ -1,0 +1,16 @@
+description: User auth data
+type: object
+properties:
+  email:
+    type: string
+    maxLength: 80 
+    description: Email of the user
+  password:
+    type: string
+    minLength: 8
+    maxLength: 20
+    pattern: ^(?!\s*$).+
+    description: User's password
+required:
+  - password
+  - email

@@ -1,0 +1,1 @@
+ALTER TABLE public.msg_type ADD CONSTRAINT msg_type_pkey PRIMARY KEY (msg_type);

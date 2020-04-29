@@ -1,0 +1,39 @@
+---
+swagger: '2.0'
+info:
+  title: HIS API
+  version: '1.0'
+  x-logo:
+    url: "logo.png"
+  description: |
+    API for AutoRegistro.
+    # Introduction
+    This API is documented in **OpenAPI format V2** called [swagger](http://swagger.io).
+    # Authentication
+    AutoRegistro offers two forms of authentication:
+      - **API Key:** For authenticated clients (registered app's) and users, based on JWT.
+      - **Basic:** For authentication of users.
+    <!-- ReDoc-Inject: <security-definitions> -->
+schemes:
+  # tip: remove http to make production-grade
+  - http
+  - https
+produces:
+- application/json
+consumes:
+- application/json
+host: localhost:3000
+basePath: "/api/v1"
+# Security
+securityDefinitions:
+  $ref: ./swagger/security-definitions/index.yaml
+security:
+  - ClientSecurity: []
+paths:
+  $ref: ./swagger/paths/index.yaml
+definitions:
+  $ref: ./swagger/definitions/index.yaml
+responses:
+  $ref: ./swagger/responses/index.yaml
+parameters:
+  $ref: ./swagger/parameters/index.yaml

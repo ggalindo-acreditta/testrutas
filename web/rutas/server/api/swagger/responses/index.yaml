@@ -1,0 +1,10 @@
+Standard400ErrorResponse:
+  $ref: ./standard-400-error-response.yaml
+Standard401ErrorResponse:
+  $ref: ./standard-401-error-response.yaml
+Standard403ErrorResponse:
+  $ref: ./standard-403-error-response.yaml
+Standard404ErrorResponse:
+  $ref: ./standard-404-error-response.yaml
+Standard500ErrorResponse:
+  $ref: ./standard-500-error-response.yaml

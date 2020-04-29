@@ -1,0 +1,16 @@
+description: Respuesta por defecto de un POST
+type: object
+properties: 
+  status:
+    type: integer
+    description: Descripcion del resultado
+  message:
+    type: string
+    description: Mensage
+  code:
+    description: An application-generic code or support purposes
+    type: string
+required:
+  - status
+  - message
+  - code

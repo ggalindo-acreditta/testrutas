@@ -1,0 +1,29 @@
+get:
+  tags:
+    - Elements
+  summary: Get Element
+  description: 'Get Element'
+  security:
+    - JWT: [] 
+  operationId: elements_get
+  parameters: 
+        - name: id
+          in: path
+          description: Element Id 
+          required: true
+          type: integer
+  produces:
+    - application/json 
+  responses:
+    '200':
+      description: successful operation
+      schema:
+        $ref: '#/definitions/dataElement'
+    '400':
+      "$ref": "#/responses/Standard400ErrorResponse"
+    '403':
+      "$ref": "#/responses/Standard403ErrorResponse"
+    '404':
+      "$ref": "#/responses/Standard404ErrorResponse"
+    '500':
+      "$ref": "#/responses/Standard500ErrorResponse"

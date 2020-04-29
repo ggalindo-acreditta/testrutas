@@ -1,0 +1,5 @@
+CREATE TABLE public.msg_priority
+(
+    msg_priority smallint NOT NULL,
+    description character varying(20) COLLATE pg_catalog."default" NOT NULL,
+)

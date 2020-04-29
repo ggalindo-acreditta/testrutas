@@ -1,0 +1,22 @@
+description: Invite data
+type: object
+properties:
+  guests:
+    description: Lista de Invitados
+    type: array
+    items:
+      type: object
+      properties:
+        firstname:
+          type: string
+          description: Nombre del Invitado
+        lastname:
+          type: string
+          description: Apellido del Invitado
+        email:
+          type: string
+          description: Correo Electronico del Invitado
+      required:
+        - email
+required:
+  - guests

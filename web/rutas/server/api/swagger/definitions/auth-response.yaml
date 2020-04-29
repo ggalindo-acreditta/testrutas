@@ -1,0 +1,34 @@
+description: User authentication response
+type: object
+properties:
+  user:
+    type: integer
+    description: User ID
+  organization:
+    type: object
+    description: organization Data    
+    properties:
+      id:
+        type: integer
+        description: ID
+      name:
+        type: string
+        description: Name
+      description:
+        type: string
+        description: Description
+      domain:
+        type: string
+        description: domain
+      photo_url:
+        type: string
+        description: Photo Url
+    required:
+      - id
+  token:
+    type: string
+    description: Authorization token
+required:
+  - user
+  - organization
+  - token

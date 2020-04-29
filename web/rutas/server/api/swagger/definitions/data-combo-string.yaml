@@ -1,0 +1,4 @@
+description: Listado Simple
+type: array 
+items:
+  $ref: '#/definitions/dataListadoString'  

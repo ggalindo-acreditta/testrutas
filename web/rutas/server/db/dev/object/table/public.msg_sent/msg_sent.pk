@@ -1,0 +1,1 @@
+ALTER TABLE public.msg_sent ADD CONSTRAINT msg_sent_pkey PRIMARY KEY (msg);

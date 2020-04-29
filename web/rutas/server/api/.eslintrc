@@ -1,0 +1,48 @@
+{
+  "parserOptions": {
+    "ecmaVersion": 2017,
+    "sourceType": "module"
+  },
+  "env": {
+    "node": true,
+    "mocha": true,
+    "es6": true
+  },
+  "globals": {
+    "describe": false,
+    "it": false,
+    "before": false,
+    "beforeEach": false,
+    "after": false,
+    "afterEach": false
+  },
+  "extends": ["eslint:recommended", "google"],
+  "rules": {
+      "indent": [
+        "error", 2, {
+          "MemberExpression": 1,
+          "SwitchCase": 1
+        }
+      ],
+      "quotes": "error",
+      "no-var": "error",
+      "arrow-parens": ["error", "as-needed"],
+      "comma-dangle": ["error", {
+          "arrays": "only-multiline",
+          "objects": "only-multiline",
+          "imports": "never",
+          "exports": "never",
+          "functions": "ignore"
+      }],
+      "no-eq-null": "error",
+      "max-len": [1, 120, 2, {"ignoreComments": true, "ignoreUrls": true}],
+      "max-nested-callbacks": [1, 10],
+      "no-alert": "error",
+      "no-console": ["error", {"allow": ["warn", "error"]}],
+      "new-cap": ["error", {"capIsNewExceptions": ["express.Router"]}],
+      "no-lonely-if": "error",
+      "no-inline-comments": 0,
+      "require-jsdoc": "off",
+      "valid-jsdoc": "off"
+    }
+}

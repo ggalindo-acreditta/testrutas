@@ -1,0 +1,59 @@
+description: Element Data
+type: object
+properties:
+  id:
+    type: integer
+    description: Element Id (integer)
+  name:
+    type: string
+    description: Nombre 
+  description:
+    type: string
+    description: Descripcion 
+  skills:
+    type: string
+    description: Habilidades 
+  tags:
+    type: string
+    description: Etiquetas 
+  criterion:
+    type: string
+    description: Criterios 
+  materiality:
+    type: string
+    description: Materialidad  
+  difficulty:
+    type: string
+    description: Dificultad 
+  image_url:
+    type: string
+    description: URL de la imagen 
+  created_at:
+    type: string
+    format: datetime
+    description: Fecha de creacion
+  updated_at:
+    type: string
+    format: datetime
+    description: Fecha de Actualizacion
+  expire_at:
+    type: string
+    format: datetime
+    description: Fecha de Expiracion
+  score:
+    type: integer
+    description: Puntuacion
+  language:
+    type: string
+    description: Idioma
+  organization_id:
+    type: integer
+    description: Id de la Organizacion
+required:
+  - id
+  - name
+  - score
+  - image_url
+  - created_at
+  - updated_at
+  - language

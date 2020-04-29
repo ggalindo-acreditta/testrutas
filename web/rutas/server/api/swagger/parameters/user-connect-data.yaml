@@ -1,0 +1,6 @@
+name: user_connect_data
+in: body
+description: User's data
+required: true
+schema:
+  $ref: '#/definitions/userConnect'

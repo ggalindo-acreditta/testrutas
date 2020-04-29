@@ -1,0 +1,20 @@
+post:
+  tags:
+    - User
+  summary: Register New User
+  description: 'Register New User'
+  operationId: users_confirmData
+  parameters:
+        - in: query
+          name: param1
+          type: string
+          description: Registration_code o token asociado al registro del usuario
+  produces:
+    - application/json
+  responses:
+    '200':
+      description: successful operation
+      schema:
+        $ref: '#/definitions/UserRegisterResponse'
+    '400':
+      "$ref": "#/responses/Standard400ErrorResponse"

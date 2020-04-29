@@ -1,0 +1,67 @@
+
+dataDefaultResponse:
+  $ref: ./data-default-response.yaml
+
+successResponse:
+  $ref: ./success-response.yaml
+successCreated:
+  $ref: ./success-created.yaml
+successDelete:
+  $ref: ./success-delete.yaml
+
+AuthResponse:
+  $ref: ./auth-response.yaml
+ErrorResponse:
+  $ref: ./error-response.yaml
+UnexpectedErrorResponse:
+  $ref: ./unexpected-error-response.yaml
+  
+userAuthData:
+  $ref: ./user-auth-data.yaml
+UserRegisterResponse:
+  $ref: ./user-register-response.yaml
+userData:
+  $ref: ./user-data.yaml
+userConnect:
+  $ref: ./user-connect.yaml
+userAcclaim:
+  $ref: ./user-acclaim.yaml
+UserConnectResponse:
+  $ref: ./user-connect-response.yaml
+UserAcclaimResponse:
+  $ref: ./user-acclaim-response.yaml
+UserBadgeResponse:
+  $ref: ./user-badge-response.yaml
+
+dataComboString:
+  $ref: ./data-combo-string.yaml
+dataListadoString:
+  $ref: ./data-reg-string.yaml
+
+dataUser:
+  $ref: ./data-user.yaml
+dataUsers:
+  $ref: ./data-users.yaml
+
+dataElement:
+  $ref: ./data-element.yaml
+dataElements:
+  $ref: ./data-elements.yaml
+paramElementPost:
+  $ref: ./param-element-post.yaml
+paramElementPut:
+  $ref: ./param-element-put.yaml
+
+dataPath:
+  $ref: ./data-path.yaml
+dataPaths:
+  $ref: ./data-paths.yaml
+paramPathPost:
+  $ref: ./param-path-post.yaml
+paramPathPut:
+  $ref: ./param-path-put.yaml
+
+paramInvitePost:
+  $ref: ./param-invite-post.yaml
+paramConfirmPost:
+  $ref: ./param-confirm-post.yaml

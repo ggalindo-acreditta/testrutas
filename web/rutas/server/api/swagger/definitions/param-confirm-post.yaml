@@ -1,0 +1,20 @@
+description: Confirm Data
+type: object
+properties:
+  code:
+    type: string
+    description: Codigo enviamo en el correo de confirmacion
+  password:
+    type: string
+    description: User's password
+  firstname:
+    type: string
+    description: User's first name
+  lastname:
+    type: string
+    description: User's last name
+required:
+  - code
+  - password
+  - firstname
+  - lastname

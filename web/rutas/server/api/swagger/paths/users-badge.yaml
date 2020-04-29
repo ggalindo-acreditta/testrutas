@@ -1,0 +1,15 @@
+get:
+  tags:
+    - User
+  summary: Organization Badge
+  description: 'Organization Badge'
+  operationId: users_organizationBadge
+  produces:
+    - application/json
+  responses:
+    '200':
+      description: successful operation
+      schema:
+        $ref: '#/definitions/UserBadgeResponse'
+    '400':
+      "$ref": "#/responses/Standard400ErrorResponse"

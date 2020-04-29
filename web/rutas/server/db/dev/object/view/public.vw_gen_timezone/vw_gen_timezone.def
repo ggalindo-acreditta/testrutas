@@ -1,0 +1,8 @@
+CREATE OR REPLACE VIEW  public.vw_gen_timezone AS 
+  SELECT a.gen_timezone,
+    a.name,
+    b.abbrev,
+    b.utc_offset,
+    b.is_dst
+   FROM gen_timezone a
+     JOIN pg_timezone_names b ON a.name::text = b.name;

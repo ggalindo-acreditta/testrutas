@@ -1,0 +1,32 @@
+{
+  "name": "acredita-api",
+  "version": "1.0.0",
+  "description": "Acredita API",
+  "main": "api/app.js",
+  "scripts": {
+    "preinstall": "node ./prepare-git-hooks.js",
+    "applydbpatch": "node ./api/apply-db-patch.js",
+    "changelog": "./node_modules/.bin/gulp changelog",
+    "start": "cd api && npm run start",
+    "test": "cd api && npm run test",
+    "xpretest": "npm run lint",
+    "lint": "./api/node_modules/.bin/eslint ./api/.",
+    "build": "./api/node_modules/.bin/gulp --gulpfile ./api/gulpfile.js build",
+    "swagger": "./api/node_modules/.bin/gulp --gulpfile ./api/gulpfile.js swagger"
+  },
+  "repository": {
+    "type": "git",
+    "url": "\"git@gitlab.com:bw-acreditta/app.rutas-api.git"
+  },
+  "keywords": [
+    "fundana"
+  ],
+  "author": "Binwus LLC",
+  "license": "SEE LICENSE IN LICENSE.md",
+  "devDependencies": {
+    "@commitlint/cli": "^7.5.2"
+  },
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}

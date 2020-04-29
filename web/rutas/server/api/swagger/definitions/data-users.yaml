@@ -1,0 +1,4 @@
+description: Users List
+type: array 
+items:
+  $ref: '#/definitions/dataUser'  

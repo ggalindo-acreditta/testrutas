@@ -1,0 +1,4 @@
+description: Unauthorized. The request requires user authentication (not
+  logged in). Also used for invalid OAuth credentials.
+schema:
+  $ref: "#/definitions/ErrorResponse"

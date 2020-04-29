@@ -1,0 +1,15 @@
+## generic files to ignore
+*~
+*.lock
+*.log
+*.DS_Store
+*.swp
+*.out
+#ignore thumbnails created by windows
+Thumbs.db
+tmp/
+dist/
+tools/node_modules
+tools/config.js
+tools/pgver.conf
+dev/backup/db-base.sql

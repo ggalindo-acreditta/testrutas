@@ -1,0 +1,7 @@
+CREATE TABLE public.msg_type
+(
+    msg_type smallint NOT NULL,
+    description character varying(20) COLLATE pg_catalog."default",
+    max_tries smallint NOT NULL DEFAULT 100,
+    status boolean NOT NULL DEFAULT true
+);

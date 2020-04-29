@@ -1,0 +1,1 @@
+ALTER TABLE public.msg_carrier ADD CONSTRAINT msg_carrier_pkey PRIMARY KEY (msg_carrier);

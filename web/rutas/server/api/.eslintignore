@@ -1,0 +1,8 @@
+/node_modules
+/packages
+build/
+.git
+/tmp
+/dist
+/config/config.js
+/docs

@@ -1,0 +1,8 @@
+description: Descripcion o Nombre
+type: object
+properties: 
+  descripcion:
+    type: string
+    description: Descripcion
+required: 
+  - descripcion 

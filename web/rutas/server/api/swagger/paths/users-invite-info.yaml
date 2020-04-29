@@ -1,0 +1,29 @@
+get:
+  tags:
+    - User
+  summary: Get User Data
+  description: 'Get User Data'
+  security:
+    - JWT: [] 
+  operationId: users_getInviteData
+  parameters: 
+        - name: code
+          in: path
+          description: Registration Code
+          required: true
+          type: string
+  produces:
+    - application/json 
+  responses:
+    '200':
+      description: successful operation
+      schema:
+        $ref: '#/definitions/dataUser'
+    '400':
+      "$ref": "#/responses/Standard400ErrorResponse"
+    '403':
+      "$ref": "#/responses/Standard403ErrorResponse"
+    '404':
+      "$ref": "#/responses/Standard404ErrorResponse"
+    '500':
+      "$ref": "#/responses/Standard500ErrorResponse"

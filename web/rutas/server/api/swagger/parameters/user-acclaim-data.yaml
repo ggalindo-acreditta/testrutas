@@ -1,0 +1,6 @@
+name: user_acclaim_data
+in: body
+description: Acclaim data
+required: true
+schema:
+  $ref: '#/definitions/userAcclaim'

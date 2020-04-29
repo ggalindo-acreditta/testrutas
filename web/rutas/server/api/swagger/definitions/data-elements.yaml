@@ -1,0 +1,4 @@
+description: Elements List
+type: array 
+items:
+  $ref: '#/definitions/dataElement'  

@@ -1,0 +1,4 @@
+type: apiKey
+description: JWT security for clients (registered apps)
+name: clientkey
+in: header

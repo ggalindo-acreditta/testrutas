@@ -1,0 +1,48 @@
+"/auth/user/authenticate":
+  $ref: ./users-auth.yaml
+"/account/register":
+  $ref: ./users-register.yaml
+"/account/confirm":
+  $ref: ./users-confirm.yaml
+"/organization/connect":
+  $ref: ./users-connect.yaml
+"/organization/disconnect":
+  $ref: ./users-disconnect.yaml
+"/organization/acclaim":
+  $ref: ./users-acclaim.yaml
+"/organization/badge":
+  $ref: ./users-badge.yaml
+"/organization/account/invite":
+  $ref: ./users-invite.yaml
+"/organization/account/invite/{code}":
+  $ref: ./users-invite-info.yaml
+"/organization/account/confirm":
+  $ref: ./users-confirm-invite.yaml
+"/organization/elements":
+  $ref: ./organization-elements.yaml
+"/organization/elements/{id}":
+  $ref: ./organization-elements-id.yaml
+
+"/user/{id}":
+  $ref: ./users-data.yaml
+"/user/logout":
+  $ref: ./users-logout.yaml
+
+"/difficulty":
+  $ref: ./combo-difficulty.yaml
+"/materiality":
+  $ref: ./combo-materiality.yaml
+  
+"/elements":
+  $ref: ./elements.yaml
+"/elements/{id}":
+  $ref: ./elements-id.yaml
+"/elements/{id}/image":
+  $ref: ./elements-image.yaml
+
+"/paths":
+  $ref: ./paths.yaml
+"/paths/{id}":
+  $ref: ./paths-id.yaml
+"/paths/{id}/image":
+  $ref: ./paths-image.yaml

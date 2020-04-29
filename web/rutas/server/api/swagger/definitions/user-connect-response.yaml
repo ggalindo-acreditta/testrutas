@@ -1,0 +1,8 @@
+description: Transaction Connect Information
+type: object
+properties:
+  organization:
+    type: integer
+    description: organization ID
+required:
+  - organization

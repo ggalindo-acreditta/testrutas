@@ -1,0 +1,4 @@
+ALTER TABLE public.msg_queue ADD CONSTRAINT msg_queue_msg_fkey FOREIGN KEY (msg)
+        REFERENCES public.msg (msg) MATCH SIMPLE
+        ON UPDATE NO ACTION
+        ON DELETE NO ACTION;

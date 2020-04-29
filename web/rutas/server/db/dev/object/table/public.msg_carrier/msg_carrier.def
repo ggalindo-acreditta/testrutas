@@ -1,0 +1,9 @@
+CREATE TABLE public.msg_carrier
+(
+    msg_carrier character varying(50) COLLATE pg_catalog."default" NOT NULL,
+    msg_type smallint NOT NULL,
+    counter smallint NOT NULL DEFAULT 0,
+    max_counter smallint NOT NULL DEFAULT 400,
+    update_date timestamp without time zone NOT NULL DEFAULT now(),
+    status boolean NOT NULL DEFAULT true,
+)

@@ -1,0 +1,6 @@
+name: user_confirm_data
+in: body
+description: Confirm data
+required: true
+schema:
+  $ref: '#/definitions/paramConfirmPost'
