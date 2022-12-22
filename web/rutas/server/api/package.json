@@ -24,7 +24,7 @@
     "image-size": "^0.8.3",
     "js-yaml": "^3.13.1",
     "json-refs": "^3.0.13",
-    "jsonwebtoken": "^8.5.1",
+    "jsonwebtoken": "^9.0.0",
     "lodash": "^4.17.11",
     "mobx": "^4.9.4",
     "mobx-react": "^5.4.3",
